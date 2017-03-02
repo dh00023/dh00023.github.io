@@ -2,8 +2,9 @@
 layout:     post
 title:      AWS EC2 Ubuntu deploy하기
 date:       2017-02-07 02:58:00
-summary:    우분투 디플로이 방법
+summary:    아마존 웹서비스 EC2 우분투에 디플로이하는 방법.
 categories: AWS
+tags: RoR aws ubuntu
 ---
 
 deploy할 서비스가 git에 올라가있다는 가정하에 시작
