@@ -5,7 +5,6 @@ date:       2017-02-07 02:58:00
 summary:    우분투 디플로이 방법
 categories: AWS
 ---
-# AWS EC2 Ubuntu
 
 deploy할 서비스가 git에 올라가있다는 가정하에 시작
 
