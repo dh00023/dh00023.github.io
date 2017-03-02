@@ -1,20 +1,28 @@
 ---
 layout: page
-title: About Pixyll
+title: ABOUT
 permalink: /about/
 tags: about
 ---
 
-This Jekyll theme was crafted with <3 by [John Otander](http://johnotander.com)
-([@4lpine](https://twitter.com/4lpine)).
+### 정다혜 (Jeong Dahye)🦁
 
-Checkout the [Github repository](https://github.com/johnotander/pixyll) to download it,
-request a feature, report a bug, or contribute. It's free, and open source
-([MIT](http://opensource.org/licenses/MIT)).
+개발을 하면서 어려웠던 내용이나 중요한 내용들을 기록하는 블로그입니다.
+<hr>
 
-Thanks to the following:
+#### 2014
+* 2014.03 ~ 건국대학교 응용통계학과 전공
 
-* [BASSCSS](http://basscss.com)
-* [Jekyll](http://jekyllrb.com)
-* [Refills](http://refills.bourbon.io/)
-* [Type Scale](http://type-scale.com/)
+#### 2015
+* 2015.03 ~ 응용통계학과 학생회
+* 2015.09 ~ 건국대학교 컴퓨터공학 복수전공
+
+#### 2016
+* ~ 2016.12  응용통계학과 학생회
+* 2016.03 ~ 멋쟁이사자처럼 4기
+      
+#### 2017
+* 2017.01 ~ 멋쟁이사자처럼 건국대학교 5기 운영진, 튜터
+* 2017.02 건국대학교 상경대학 세미나실 예약페이지 <a href="//kuceminar.com">KUCEMIANR</a> 개발
+
+<hr>
