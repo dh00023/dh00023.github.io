@@ -33,3 +33,9 @@
 @import 'gists';
 @import 'measure';
 @import 'pagination';
+
+a {
+    color: #000000;
+    background-image: none!important;
+    text-shadow: white 1px 0px 0px, white -1px 0px 0px;
+}
