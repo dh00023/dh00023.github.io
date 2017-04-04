@@ -23,6 +23,7 @@ tags: about
       
 #### 2017
 * 2017.01 ~ 멋쟁이사자처럼 건국대학교 5기 운영진, 튜터
-* 2017.02 건국대학교 상경대학 세미나실 예약페이지 <a href="//kuceminar.com">KUCEMIANR</a> 개발
+* 2017.02 건국대학교 상경대학 세미나실 예약페이지 <a href="http://kuceminar.com/">KUCEMIANR</a> 개발
 
 <hr>
+
