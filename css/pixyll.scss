@@ -35,7 +35,10 @@
 @import 'pagination';
 
 a {
-    color: #000000;
+    color: #616161;
     background-image: none!important;
     text-shadow: white 1px 0px 0px, white -1px 0px 0px;
+}
+a:hover a:active{
+	color: #000000;
 }
