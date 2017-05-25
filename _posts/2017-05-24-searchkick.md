@@ -74,6 +74,7 @@ end
       </p>
 <% end %>
 ```
+
 ```erb
 # search.html.erb
 <div class="row">
