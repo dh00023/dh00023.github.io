@@ -128,7 +128,7 @@ rvmsudo /usr/bin/apt-get install build-essential openssl libreadline6 libreadlin
 6. `rake db:migrate RAILS_ENV=production`
 7. `sudo /opt/nginx/sbin/nginx`
 > nginx서버를 띄우는 것
-8. `RAILS_ENV = production rake assets:precomplie`
+8. `RAILS_ENV = production rake assets:precompile`
 > **Asset pipe line** 을 사용하는 명령어
 > Asset = Javascript, Stylesheet(css), images 등을 모두 합쳐 사용자들이 웹페이지를 보다 빠르게 접속할 수 있게 해준다.
 9. `mkdir tmp`
@@ -148,3 +148,28 @@ rvmsudo /usr/bin/apt-get install build-essential openssl libreadline6 libreadlin
 참조링크 [ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-rails-and-nginx-with-passenger-on-ubuntu) 
 
 
+#### rbenv 설치 방법
+
+- rbenv 설치
+
+```
+$ sudo apt update
+$ sudo apt install rbenv
+$ sudo apt install ruby-build
+$ rbenv rehash
+```
+
+- ruby dev설치
+
+```
+$ sudo apt install ruby-dev
+```
+
+- bundler / rails 설치
+
+```
+$ sudo gem install bundler
+$ sudo gem install rails -v 5.0.3 --no-ri --no-rdoc
+$ rbenv rehash
+$ rails -v
+```
