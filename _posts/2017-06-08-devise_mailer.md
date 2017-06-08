@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Devise confirmable + Mailgun
-date:       2017-06-08 18:58:00
+date:       2017-06-08 19:33:00
 summary:    mailgun을 이용해서 회원가입시 확인하기
 ---
 
