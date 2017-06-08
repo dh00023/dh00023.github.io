@@ -3,7 +3,6 @@ layout:     post
 title:      Devise confirmable + Mailgun
 date:       2017-06-08 18:58:00
 summary:    mailgun을 이용해서 회원가입시 확인하기
-categories: AWS
 ---
 
 Devise confirmable기능과 Mailgun을 이용해서 회원가입 인증을 구현해 볼 것이다.
@@ -87,3 +86,5 @@ end
 ```
 
 이때 보안을 위해서는 Figaro gem을 이용한다.
+[참조페이지]( https://medium.com/@bluesh55/devise-%EC%9D%B4%EB%A9%94%EC%9D%BC-%EC%9D%B8%EC%A6%9D-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-a6b525ccabba
+)
