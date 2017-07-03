@@ -87,7 +87,7 @@ end
 
 이때 보안을 위해서는 Figaro gem을 이용한다.
 
-<b style= "color: red;">Sandbox subdomains are for test purposes only. Please add your own domain or add the address to authorized recipients in Account Settings.</b> 즉, 서브도메인은 오직 테스트만 가능하다.
+- <span style= "color: red;">Sandbox subdomains are for test purposes only. Please add your own domain or add the address to authorized recipients in Account Settings.</span> 즉, **서브도메인은 오직 테스트만 가능**하다.
 
 [참조페이지]( https://medium.com/@bluesh55/devise-%EC%9D%B4%EB%A9%94%EC%9D%BC-%EC%9D%B8%EC%A6%9D-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-a6b525ccabba
 )
