@@ -1,0 +1,23 @@
+---
+title: Web
+permalink: "web/index.html"
+---
+<h2>Web Programming 공부 자료들입니다.</h2>
+<br>
+<div class="page-archive">
+{% for post in site.posts %}
+  {% if post.tag == "web"%}
+    {% assign post_month_year = post.date | date: "%B %Y" %}
+    {% assign newer_post_month_year = post.next.date | date: "%B %Y" %}
+    {% if post_month_year != newer_post_month_year %}
+      <h3 class="section-header-archive">
+        {{ post_month_year }}
+      </h3>
+    {% endif %}
+    <p>
+      <a href="{{ post.url | prepend:site.baseurl}}" class="post-title-archive list">{{ post.title }}</a>
+      <small class="text-muted"> {{ post.date | date_to_string }}</small>
+    </p>
+  {% endif %}
+{% endfor %}
+</div>
