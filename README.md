@@ -1,11 +1,8 @@
 ## 다혜코딩랜드
 
-* 개발을 하면서 어려웠던 부분이나 중요한 내용을 기록합니다.
+- 개발을 하면서 어려웠던 부분이나 중요한 내용을 기록
 
-**pickyll**을 수정해서 만들었습니다.
 
 ## License
 
-Copyright (c) 2014-2015 John Otander
-
-MIT License
+- jekyll [shiori theme](https://github.com/ellekasai/shiori)을 사용
