@@ -1,13 +1,13 @@
 ---
-title: Pytorch
-permalink: "pytorch/index.html"
+title: Algorithm
+permalink: "algorithm/index.html"
 ---
-<h2>Pytorch와 관련된 공부 자료들입니다.</h2>
+<h2>알고리즘 공부 자료들입니다.</h2>
 <br>
 <div class="page-archive">
 {% for post in site.posts %}
-  {% if post.tag == "pytorch"%}
-  {% assign post_month_year = post.date | date: "%B %Y" %}
+  {% if post.tag == "algorithm"%}
+  즘% assign post_month_year = post.date | date: "%B %Y" %}
   {% assign newer_post_month_year = post.next.date | date: "%B %Y" %}
   {% if post_month_year != newer_post_month_year %}
     <h3 class="section-header-archive">
