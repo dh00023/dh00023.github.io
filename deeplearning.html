@@ -6,11 +6,12 @@ permalink: "deeplearning/index.html"
 
 <h3>Tensorflow</h3>
 <p><a href="https://hunkim.github.io/ml/">모두를 위한 머신러닝/딥러닝 강의</a>를 참조했습니다.</p> 
+
 <br>
 <div class="page-archive">
 {% for post in site.posts %}
   {% if post.tag == "tensorflow"%}
-  즘% assign post_month_year = post.date | date: "%B %Y" %}
+  {% assign post_month_year = post.date | date: "%B %Y" %}
   {% assign newer_post_month_year = post.next.date | date: "%B %Y" %}
   {% if post_month_year != newer_post_month_year %}
     <h3 class="section-header-archive">
