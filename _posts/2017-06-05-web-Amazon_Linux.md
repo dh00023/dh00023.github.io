@@ -1,6 +1,13 @@
 ---
-title: "AWS EC2 Amazon Linux deploy하기"
-tag: web
+title: AWS EC2 Amazon Linux deploy하기
+categories:
+- setting
+tag:
+- aws
+- ec2
+- linux
+- deploy
+- ruby
 ---
 
 ### AWS instance 생성

@@ -1,11 +1,17 @@
 ---
-title: "AWS EC2 Ubuntu deploy하기"
-tag: web
+title: AWS EC2 Ubuntu deploy하기
+categories:
+- web
+tags:
+- aws
+- ec2
+- deploy
+- ruby
 ---
 
-deploy할 서비스가 git에 올라가있다는 가정하에 시작
+이 글은 AWS EC2에 rails 서비스를 deploy하는 방법이다.
 
-#### 1.AWS 인스턴스 생성
+## 1.AWS 인스턴스 생성
 1. Services - EC2
 2. launch instance
 3. Ubuntu select
@@ -18,7 +24,7 @@ deploy할 서비스가 git에 올라가있다는 가정하에 시작
 10. view instance
 11. instance에 이름 정해주기
 
-#### 2. pem키 설정
+## 2. pem키 설정
 
 AWS가 내가 가진 키가 유효한지 확인하기 위해서는 권한을 변경해줘야한다.
 
@@ -40,7 +46,7 @@ AWS가 내가 가진 키가 유효한지 확인하기 위해서는 권한을 변
 > * 즉, ssh 방식을 통해 인터넷 어딘가 중에서 IP주소 에 있는 컴퓨터에 ubuntu user로 접속할 것이다. -i 옵션으로 konkuk.pem 열쇠를 넘길거라는 뜻이다.
 
 
-#### 3. rvm 설치([rvm.io](http://rvm.io)접속)
+## 3. rvm 설치([rvm.io](http://rvm.io)접속)
  1. `sudo apt-get update`
  > sudo(substitute user do):관리자(root)가 아닌 계정일 때 입력하는 명령어 줄을 관리자 권한으로 실행
  2. `gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3`
@@ -50,37 +56,39 @@ AWS가 내가 가진 키가 유효한지 확인하기 위해서는 권한을 변
  4. `source ~/.rvm/scripts/rvm`
  
  5. `rvm requirements` 
- ```
+
+```
 rvmsudo /usr/bin/apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion
 ```
 
-#### 4. git 설치 후 clone
- 우분투는 git이 설치되어있다.
+## 4. git 설치 후 clone
+
+우분투는 git이 설치되어있다.
  
  `git clone https://github.com/...`
 
-#### 4. ruby 설치
+## 4. ruby 설치
 * `rvm install 2.3.3`
 * `rvm use 2.3.3 --default`
 * `gem install bundler`
  > bundle install 명령어를 가능하게 해주는 gem
 
-#### 5. ruby gem 설치
+## 5. ruby gem 설치
 `rvm rubygems current`
 
-#### 6. Rails 설치
+## 6. Rails 설치
 `gem install rails`
 
 
 이때 clone한 repository로 이동.
 
-#### 7. passenger 설치
+## 7. passenger 설치
  `gem install passenger`
 >* Nginx서버를 사용하기 위해 필요한 gem
 >* Nginx : 웹 어플리케이션을 계속 서버에서 돌게해ㅐ주는 웹서버 & Rails 앱을 Production모드로 배포할 수 있게 해줌.
 >* Passenger : Rails에서 Nginx를 관리할 수 있게 해주는 모듈
 
-#### 8. nginx 설치
+## 8. nginx 설치
 
  1. `rvmsudo passenger-install-nginx-module`
  
@@ -96,22 +104,27 @@ rvmsudo /usr/bin/apt-get install build-essential openssl libreadline6 libreadlin
  7. enter계속 치다가 1번
  8. 엔터
 
-#### 9.환경설정
+## 9.환경설정
+
 1. `sudo vi /opt/nginx/conf/nginx.conf`
-  ```
+
+```
   server {
 		listen 80;
 		server_name konkuk.com; 
 		passenger_enabled on; 
 		root /home/ubuntu/ku_stat/public; 
    }
-   ```
+```
+
    *밑의 server글이 보이면 위의 것 붙여넣기! root는 pwd를 해서 나오는 주소/public;*
-   ```
+
+```
    server {
        listen       80;
        server_name  localhost;
-   ```
+```
+
 2. `bundle install` 
 
 	* `gem therubyracer` #제거 : javascript코드를 루비에서 사용할 수 있게 하는 gem 
@@ -139,12 +152,12 @@ rvmsudo /usr/bin/apt-get install build-essential openssl libreadline6 libreadlin
 > ``` 
 > 는 적용되지 않는다. (파일들 위치와 이름이 마음대로 변경된다.) 대신 파일 이름이 동일하면 그 위치를 알아서 찾아주는 메서드를 사용하면된다.
 
-#### 10. Public IP로 접속
+## 10. Public IP로 접속
 
 참조링크 [ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-rails-and-nginx-with-passenger-on-ubuntu) 
 
 
-#### rbenv 설치 방법
+## rbenv 설치 방법
 
 - rbenv 설치
 

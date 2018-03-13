@@ -1,7 +1,13 @@
 ---
-title: "07. Application & Tips"
-tag: tensorflow
+title: Application & Tips
+categories:
+- deeplearning
+tag:
+- python
+- tensorflow
 ---
+
+<a href="https://hunkim.github.io/ml/">모두를 위한 머신러닝/딥러닝 강의</a>를 참조했습니다.
 
 Learning rate,data preprocessing, **Overfitting**(가장 큰 문제 중 하나)
 

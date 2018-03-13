@@ -1,7 +1,13 @@
 ---
-title: "09. Neural Nets(NN) for XOR"
-tag: tensorflow
+title: Neural Nets(NN) for XOR
+categories:
+- deeplearning
+tag:
+- python
+- tensorflow
 ---
+
+<a href="https://hunkim.github.io/ml/">모두를 위한 머신러닝/딥러닝 강의</a>를 참조했습니다.
 
 ## 이론
 

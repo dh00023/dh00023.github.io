@@ -1,6 +1,12 @@
 ---
-title: "Devise confirmable + Mailgun"
-tag: web
+title: Devise confirmable + Mailgun
+categories:
+- web
+tag:
+- devise
+- mailgun
+- ruby
+- gem
 ---
 
 Devise confirmable기능과 Mailgun을 이용해서 회원가입 인증을 구현해 볼 것이다.

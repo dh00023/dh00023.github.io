@@ -1,6 +1,11 @@
 ---
-title: "Chartkick"
-tag: web
+title: Chartkick
+categories:
+- web
+tag:
+- JS
+- gem
+- ruby
 ---
 
 - [Github page](https://github.com/ankane/chartkick)

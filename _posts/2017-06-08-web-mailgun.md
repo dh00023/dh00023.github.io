@@ -1,6 +1,11 @@
 ---
-title: "Gem mailgun-ruby"
-tag: web
+title: Gem mailgun-ruby
+categories:
+- web
+tag:
+- ruby
+- gem
+- mailgun
 ---
 
 #### Mailgun 메일 보내기

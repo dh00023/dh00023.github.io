@@ -1,7 +1,13 @@
 ---
-title: "01. 머신러닝 / 딥러닝 기본"
-tag: tensorflow
+title: 머신러닝 / 딥러닝 기본
+categories:
+- deeplearning
+tag:
+- python
+- tensorflow
 ---
+
+<a href="https://hunkim.github.io/ml/">모두를 위한 머신러닝/딥러닝 강의</a>를 참조했습니다.
 
 
 ## 이론

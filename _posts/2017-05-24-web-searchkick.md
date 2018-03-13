@@ -1,6 +1,11 @@
 ---
-title: "Gem searchkick"
-tag: web
+title: Gem searchkick
+categories:
+- web
+tag:
+- gem
+- ruby
+- search
 ---
 #### 참조페이지
 - [`searchkick`](https://github.com/ankane/searchkick) c9에서 적용해보기

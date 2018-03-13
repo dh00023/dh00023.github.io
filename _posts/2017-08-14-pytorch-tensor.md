@@ -1,6 +1,10 @@
 ---
-title: "Tensor"
-tag: pytorch
+title: Tensor
+categories:
+- deeplearning
+tag:
+- python
+- pytorch
 ---
 
 - [Pytorch tutorial](http://pytorch.org/tutorials/beginner/blitz/tensor_tutorial.html#tensors)

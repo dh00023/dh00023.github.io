@@ -1,9 +1,13 @@
 ---
-title: "TinyMCE 적용하기"
-tag: web
+title: TinyMCE 적용하기
+categories:
+- web
+tag: 
+- WYSIWYG
+- gem
 ---
 
-TinyMCE 글을 보이는데로 수정할 수 있게 해주는 것이다.
+TinyMCE는 WYSIWYG로 글을 보이는데로 수정할 수 있게 해주는 것이다.
 
 1. `Gemfile`에 gem 추가
 ```

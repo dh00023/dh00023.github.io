@@ -1,6 +1,12 @@
 ---
-title: "Datetime picker 사용하기"
-tag: web
+title: Datetime picker 사용하기
+categories:
+- web
+tag: 
+- datetime
+- ruby
+- js
+- gem
 ---
 
 ### 한국 시간대로 설정하기

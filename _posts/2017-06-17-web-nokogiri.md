@@ -1,6 +1,11 @@
 ---
-title: "Gem nokogiri"
-tag: web
+title: nokogiri
+categories:
+- web
+tag:
+- parsing
+- gem
+- ruby
 ---
 
 #### 참고페이지

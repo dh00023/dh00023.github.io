@@ -1,6 +1,10 @@
 ---
-title: "MongoDB"
-tag: web
+title: MongoDB
+categories:
+- setting
+tag:
+- DB
+- install
 ---
 
 ```

@@ -1,6 +1,11 @@
 ---
-title: "Heroku 배포하기"
-tag: web
+title: Heroku 배포하기
+categories:
+- web
+tag:
+- deploy
+- ruby
+- heroku
 ---
 
 ### 참조페이지

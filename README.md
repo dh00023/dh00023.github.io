@@ -5,4 +5,5 @@
 
 ## License
 
-- jekyll [shiori theme](https://github.com/ellekasai/shiori)을 사용
+- NexT [Hexo NexT](https://github.com/iissnan/hexo-theme-next)
+- [jekyll-theme-next](https://github.com/Simpleyyt/jekyll-theme-next)

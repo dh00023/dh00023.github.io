@@ -1,9 +1,13 @@
 ---
-title: "Mac에 Rails 설치하기"
-tag: web
+title: Mac에 Rails 설치하기
+categories:
+- setting
+tag:
+- ruby
+- rails
 ---
 
-### Homebrew 설치하기 [[페이지 바로가기](https://brew.sh/index_ko.html)]
+## Homebrew 설치하기 [[페이지 바로가기](https://brew.sh/index_ko.html)]
 ```
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
@@ -16,7 +20,7 @@ $ brew update
 
 주로 **rbenv** 또는 **rvm**으로 설치한다. 둘중에 한가지를 이용해서 설치하면된다.
 
-### rbenv 설치
+## rbenv 설치
 
 ```
 $ brew install rbenv && brew upgrade ruby-build
@@ -67,7 +71,7 @@ $ gem install rails --version 5.0.6 --no-ri --no-rdoc
 ```
 이때 레일즈 버전을 확인하고 설치하자.
 
-### rvm 설치 [[페이지 바로가기](https://rvm.io/)]
+## rvm 설치 [[페이지 바로가기](https://rvm.io/)]
 ```
 $ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 $ \curl -sSL https://get.rvm.io | bash -s stable

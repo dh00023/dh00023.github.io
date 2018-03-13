@@ -1,9 +1,16 @@
 ---
-title: "11. Convolutional Neural Networks(CNN)"
-tag: tensorflow
+title: Convolutional Neural Networks(CNN)
+categories:
+- deeplearning
+tag:
+- python
+- tensorflow
 ---
 
+<a href="https://hunkim.github.io/ml/">모두를 위한 머신러닝/딥러닝 강의</a>를 참조했습니다.
+
 ## 이론
+
 기본적인 아이디어는 고양이 실험에서 시작되었다. 그림을 읽어들이는 뉴런들이 동시에 다 동작하는 것이아니라 이미지 입력을 나눠서하는 것이다. 이런 부분에서 CNN의 아이디어가 나왔다.
 
 즉, 이미지를 잘라서 각각의 이미지를 넘기는 방법이다.

@@ -1,7 +1,12 @@
 ---
-title: "Rails console error"
-tag: web
+title: Rails console error
+categories:
+- web
+tags:
+- ruby
 ---
+
+이 글은 rails console창에서 오류가 발생한 경우 해결하는 방법이다.
 
 ```
 $ rails c

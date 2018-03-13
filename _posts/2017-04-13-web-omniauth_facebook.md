@@ -1,6 +1,12 @@
 ---
-title: "OmniAuth Facebook Gem"
-tag: web
+title: OmniAuth Facebook Gem
+categories:
+- web
+tag:
+- gem
+- facebook
+- omniauth
+- ruby
 ---
 
 ```

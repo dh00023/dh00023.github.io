@@ -1,7 +1,13 @@
 ---
-title: "06. Multinomial Classification - Softmax Classification"
-tag: tensorflow
+title: Multinomial Classification - Softmax Classification
+categories:
+- deeplearning
+tag:
+- python
+- tensorflow
 ---
+
+<a href="https://hunkim.github.io/ml/">모두를 위한 머신러닝/딥러닝 강의</a>를 참조했습니다.
 
 ## 이론
 

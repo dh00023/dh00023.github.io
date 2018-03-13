@@ -1,7 +1,13 @@
 ---
-title: "04 Multivariable linear regression"
-tag: tensorflow
+title: Multivariable linear regression
+categories:
+- deeplearning
+tag:
+- python
+- tensorflow
 ---
+
+<a href="https://hunkim.github.io/ml/">모두를 위한 머신러닝/딥러닝 강의</a>를 참조했습니다.
 
 ## 이론
 input(x1,x2,x3....)의 값이 여러개인 경우를 알아보자.
