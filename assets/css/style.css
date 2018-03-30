@@ -1,0 +1,17 @@
+header{
+ 	background: url(../images/pro/bg.jpeg) no-repeat;
+ 	background-size: cover;
+}
+
+a{
+	color: black;
+}
+
+#header{
+	height: 550px;
+	padding-left: 100px;
+}
+
+.card img{
+	width: 348px;
+}
