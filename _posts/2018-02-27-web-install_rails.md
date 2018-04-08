@@ -28,6 +28,20 @@ $ brew install rbenv && brew upgrade ruby-build
 
 설치할 수 있는 루비버전 확인하기[[현재 안정 버전의 루비 버전 확인하기](https://www.ruby-lang.org/ko/downloads/)]
 ```
+# 경로(path)확인
+$ env | grep PATH
+
+# 경로 설정해주기
+$ export PATH="$HOME/.rbenv/bin:$PATH"
+$ eval "$(rbenv init -)"
+```
+
+```
+$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+$ echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+```
+
+```
 $ rbenv install -l
 ```
 
@@ -43,21 +57,6 @@ $ rbenv global 2.5.0
 $ ruby -v
 ```
 
-루비를 설치했으나 버전이 바뀌지 않는다면
-```
-# 경로(path)확인
-$ env | grep PATH
-
-# 경로 설정해주기
-$ export PATH="$HOME/.rbenv/bin:$PATH"
-$ eval "$(rbenv init -)"
-```
-
-터미널을 reboot한 후에 global설정이 안되어있는 경우
-```
-$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-$ echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-```
 
 #### bundler 설치
 ```
