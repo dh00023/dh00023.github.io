@@ -117,10 +117,11 @@ index_with_subtitle: false
 # When running the site in a subdirectory (e.g. domain.tld/blog), remove the leading slash (/archives -> archives)
 menu:
   home: /
+  book: /books/
   categories: /categories/
   about: /about/
   archives: /archives/
-  tags: /tags/
+  #tags: /tags/
   #sitemap: /sitemap.xml
   #commonweal: /404.html
 
@@ -141,6 +142,7 @@ menu_icons:
   archives: archive
   sitemap: sitemap
   commonweal: heartbeat
+  book: book
 
 
 
@@ -214,8 +216,9 @@ font:
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
 social:
   GitHub: https://github.com/dh00023
-  Gitbook1: https://dh00023.gitbooks.io/til/content/
-  Gitbook2: https://dh00023.gitbooks.io/java/
+  Web: https://dh00023.gitbooks.io/til/content/
+  JAVA: https://dh00023.gitbooks.io/java/
+  JSP: https://dh00023.gitbooks.io/jsp/
 
 
 # Social Links Icons
@@ -228,8 +231,9 @@ social_icons:
   # Icon Mappings.
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
   GitHub: github
-  Gitbook1: book
-  Gitbook2: book
+  Web: book
+  JAVA: book
+  JSP: book
   #Twitter: twitter
   #Weibo: weibo
 
