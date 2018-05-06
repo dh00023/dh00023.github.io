@@ -117,11 +117,11 @@ index_with_subtitle: false
 # When running the site in a subdirectory (e.g. domain.tld/blog), remove the leading slash (/archives -> archives)
 menu:
   home: /
-  book: /books/
-  categories: /categories/
   about: /about/
   archives: /archives/
-  #tags: /tags/
+  books: /books/
+  categories: /categories/
+  # tags: /tags/
   #sitemap: /sitemap.xml
   #commonweal: /404.html
 
@@ -135,6 +135,7 @@ menu_icons:
   enable: true
   #KeyMapsToMenuItemKey: NameOfTheIconFromFontAwesome
   home: home
+  books: book
   about: user
   categories: th
   schedule: calendar
@@ -142,7 +143,6 @@ menu_icons:
   archives: archive
   sitemap: sitemap
   commonweal: heartbeat
-  book: book
 
 
 
