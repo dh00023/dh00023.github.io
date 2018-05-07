@@ -119,7 +119,7 @@ menu:
   home: /
   about: /about/
   archives: /archives/
-  books: /books/
+  books: /category/#/book
   categories: /categories/
   # tags: /tags/
   #sitemap: /sitemap.xml
