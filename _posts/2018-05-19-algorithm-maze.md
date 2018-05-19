@@ -29,16 +29,16 @@ stack을 이용해서 미로를 푸는 코드입니다.
 
 2. 다음을 반복한다.
 
-3. 1. 현재 위치에 방문했다는 표시를 한다.(노란색)
+   1. 현재 위치에 방문했다는 표시를 한다.(노란색)
 
    2. 현재 위치가 출구라면 종료한다.
 
    3. 현재 위치에서 북, 동, 남, 서 4방향에 대해 순서대로
 
-   4. 1. 그 방향으로 이동할 수 있는지(벽, 미로의 외부, 이미 방문한 위치)가 아닌지 검사한다.
+      1. 그 방향으로 이동할 수 있는지(벽, 미로의 외부, 이미 방문한 위치)가 아닌지 검사한다.
       2. 만약 갈 수 있으면 그 방향으로 이동한다.
 
-   5. 만약 3번에서 4방향 중 어느 쪽으로도 가지 못했다면 현재 위치에 도달하기 직전 위치로 돌아간다.
+   4. 만약 3번에서 4방향 중 어느 쪽으로도 가지 못했다면 현재 위치에 도달하기 직전 위치로 돌아간다.
 
 
 
@@ -59,7 +59,12 @@ stack을 이용해서 미로를 푸는 코드입니다.
 ```
 
 
+
 #### Position
+
+
+
+- position.h
 
 ```c
 //  position.h
@@ -77,13 +82,20 @@ Position move_to(Position pos, int dir);
 
 ```
 
+
+
+- position.c
+
 ```c
 //  position.c
-
 #include "position.h"
-
 // 북동남서방향으로 이동하는 것이다. 세로가 X, 가로가 Y
-int offset[4][2] = {{-1,0},{0,1},{1,0},{0,-1}};
+int offset[4][2] = {
+    {-1,0},
+    {0,1},
+    {1,0},
+    {0,-1}
+};
 
 Position move_to(Position pos,int dir){
     Position next;
@@ -94,7 +106,13 @@ Position move_to(Position pos,int dir){
 
 ```
 
+
+
 #### Stack
+
+
+
+- stack.h
 
 ```c
 //  stack.h
@@ -122,6 +140,10 @@ void pop(Stack ** top);
 #endif /* stack_h */
 
 ```
+
+
+
+- stack.c
 
 ```c
 //  stack.c
@@ -165,7 +187,11 @@ void pop(Stack ** top){
 }
 ```
 
+
+
 #### Color
+
+
 
 ```c
 //  color.h
@@ -198,6 +224,8 @@ void pop(Stack ** top){
 
 
 #### Main
+
+
 
 ```c
 //  main.c
