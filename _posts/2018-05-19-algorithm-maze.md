@@ -1,10 +1,14 @@
 ---
-title: Maze(ver. Stack) 
+title: Maze
 categories:
 - algorithm/ds
 tag:
 - c/c++
 ---
+
+스택과 큐를 이용해서 미로찾기를 구현해보았습니다.
+
+## Stack(DFS)
 
 stack을 이용해서 미로를 푸는 코드입니다.
 
@@ -418,3 +422,289 @@ void print_maze(int x,int y){
 }
 ```
 
+- 스택을 이용하는 방법은 한쪽 방향으로 갈 수 있는 만큼 깊이 간므로 DFS방법이다.
+
+## Queue(BFS)
+
+### 규칙
+다음과 같은 순서로 cell들을 방문한다.
+
+- L0 = {s}, 여기서 s는 출발 지점
+- L1 = L0에서 1번에 갈 수 있는 모든 셀들
+- L2 = L1에서 1번에 갈 수 있는 모든 셀들 중에 L0에 속하지 않는 셀들
+- …
+- Ln = Ln-1에서 1번에 갈 수 있는 셀들 중에 Ln-2에 속하지 않는 셀들
+
+스택에서는 북->동->남->서로 찾기 때문에 최단 경로로 찾는지 보장할 수 없다.
+하지만 큐에서는 **동심원 형태로 찾기때문에 입구에서 출구까지 최단 경로를 찾을 수 있다**.
+
+```
+- 하나의 큐를 만든다.
+- 위치(0,0) 는 이미 방문한 위치임을 표시하고, 큐에 위치(0,0)을 넣는다. 
+- 큐가 빌 때까지 다음을 반복한다.
+    - 큐에서 하나의 위치 p를 꺼낸다.
+    - p에서 한 칸 떨어진 위치들 중에서 이동 가능하면서 아직 방문하지 않은 모든 위치들을 방문된 위치임을 표시하고 큐에 넣는다.
+    - 만약 그 위치가 출구라면 종료한다.
+```
+**출구에서 숫자가 감소하는 방향으로 따라가면 입구에 도달**한다.
+
+### 구현
+
+
+#### Position
+
+스택과 동일
+
+#### Queue
+
+```c
+//
+//  queue.h
+//  maze_queue
+//
+//  Created by dahye Jeong on 2018. 5. 20..
+//  Copyright © 2018년 dahye Jeong. All rights reserved.
+//
+
+#ifndef queue_h
+#define queue_h
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "position.h"
+
+typedef struct node{
+    Position pos;
+    struct node * next;
+}QNode;
+
+typedef struct que{
+    QNode *front, *rear;
+}Queue;
+
+void enQueue(Queue * q,Position pos);
+void deQueue(Queue * q);
+Position front(Queue *queue);
+Position rear(Queue *queue);
+QNode * new_node(Position pos);
+Queue * creat_queue(void);
+
+#endif /* queue_h */
+
+```
+
+```c
+//
+//  queue.c
+//  maze_queue
+//
+//  Created by dahye Jeong on 2018. 5. 20..
+//  Copyright © 2018년 dahye Jeong. All rights reserved.
+//
+
+#include "queue.h"
+
+QNode * new_node(Position pos){
+    QNode * new = (QNode *)malloc(sizeof(QNode));
+    new->pos.x = pos.x;
+    new->pos.y = pos.y;
+    new->next=NULL;
+    return new;
+}
+
+Queue * creat_queue(void){
+    Queue * new = (Queue *)malloc(sizeof(Queue));
+    new->front = new->rear= NULL;
+    return new;
+}
+
+
+Position front(Queue *q){
+    return q->front->pos;
+}
+
+Position rear(Queue *q){
+    return q->rear->pos;
+}
+
+int is_empty(Queue * q){
+    return (q->front==NULL && q->rear==NULL);
+}
+
+//front 포인터는 삭제,  rear 포인터는 삽입할 때 사용
+void enQueue(Queue * q,Position pos){
+    QNode * tmp = new_node(pos);
+    
+    if(is_empty(q)){
+        q->front = q->rear = tmp;
+        return;
+    }
+    q->rear->next= tmp;
+    q->rear=tmp;
+}
+
+void deQueue(Queue * q){
+    if(q->front==NULL){
+        return;
+    }
+    q->front = q->front->next;
+    if(q->front==NULL) q->rear=NULL;
+}
+```
+#### Main
+
+```c
+//
+//  main.c
+//  maze_queue
+//
+//  Created by dahye Jeong on 2018. 5. 20..
+//  Copyright © 2018년 dahye Jeong. All rights reserved.
+//
+
+#include "queue.h"
+#include "position.h"
+#include "color.h"
+#include <unistd.h>
+
+#define MAX 8
+#define PATH 0              // 지나갈 수 있는 길
+#define WALL 1              // 지나갈 수 없는 길 == 벽 흰색!
+#define EDGE 4              // 테두리
+#define clear() printf("\033[H\033[J")
+
+
+int maze[MAX+2][MAX+2]= {
+    {4,4,4,4,4,4,4,4,4,4},
+    {4,0,0,0,0,0,0,0,1,4},
+    {4,0,1,1,0,1,1,0,1,4},
+    {4,0,0,0,1,0,0,0,1,4},
+    {4,0,1,0,0,1,1,0,0,4},
+    {4,0,1,1,1,0,0,1,1,4},
+    {4,0,1,0,0,0,1,0,1,4},
+    {4,0,0,0,1,0,0,0,1,4},
+    {4,0,1,1,1,0,1,0,0,4},
+    {4,4,4,4,4,4,4,4,4,4}
+};
+
+void print_maze();
+int movable(Position pos,int dir);
+
+int main(int argc, const char * argv[]) {
+    
+    
+    Queue *q = creat_queue();
+    
+    Position cur;
+    cur.x=1;
+    cur.y=1;
+
+    
+    enQueue(q,cur);
+
+    // 추가 배열을 사용하지 않기 위해 방문 표시를 음수로 저장
+    maze[1][1]=-1;
+    int found = 0;
+
+    while(!is_empty(q)){
+        Position cur = front(q);
+        deQueue(q);
+        for(int dir=0;dir<4;dir++){
+            //그 셀이 1(벽)이 아니면서 방문하지 않은 곳인지 검사!
+            if(movable(cur,dir)){
+                //move_to도 동일한 함수
+                Position pos = move_to(cur,dir);
+                // 추가 배열을 사용하지 않기 위해 방문 표시를 음수로 저장
+                maze[pos.x][pos.y] = maze[cur.x][cur.y]-1;
+
+                if(pos.x==MAX&&pos.y==MAX){
+                    printf("미로를 찾았습니다.\n");
+                    found=1;
+                    break;
+                }
+                enQueue(q,pos);
+            }
+        }
+    }
+
+    return 0;
+}
+
+
+int movable(Position pos, int dir){
+    Position tmp = move_to(pos, dir);
+    //1. dir방향으로 이동한 좌표가 1~MAX이내에 있어야한다.
+    print_maze(tmp.x,tmp.y);
+    printf("maze[%d][%d]=%d\n",tmp.x,tmp.y,maze[tmp.x][tmp.y]);
+    
+    if( tmp.x<1 || tmp.x>MAX){
+        printf("x범위초과\n");
+        return 0;
+    }
+    if(tmp.y<1||tmp.y>MAX){
+        printf("y범위초과\n");
+        return 0;
+    }
+    //2. wall이 아니고, 벽이아니어야한다.
+    switch (maze[tmp.x][tmp.y]) {
+        case 0:
+            printf("갈 수 있는 길입니다.\n");
+            return 1;
+        case 1:
+            printf("벽입니다. 갈 수 없습니다.\n");
+            return 0;
+        default:
+            printf("이미 방문한 길입니다. 갈 수 없습니다.\n");
+            return 0;
+    }
+    
+}
+
+void print_maze(int x,int y){
+//    sleep(1);
+//    clear();
+    for(int i=0;i<MAX+2;i++){
+        for(int j=0;j<MAX+2;j++){
+            switch (maze[i][j]) {
+                case 0:
+                    printf(BLACK);
+                    if(i==x&&j==y){
+                        printf(BOLDRED);
+                    }
+                    
+                    printf("ㅁ");
+                    printf(RESET);
+                    break;
+                case 1:
+                    if(i==x&&j==y){
+                        printf(BOLDRED);
+                    }
+                    printf("ㅁ");
+                    break;
+                case 4:
+                    printf(BOLDBLUE);
+                    if(i==x&&j==y){
+                        printf(BOLDRED);
+                        printf("ㅁ");
+                    }else
+                        printf("ㅁ");
+                    printf(RESET);
+                    break;
+                default:
+                    printf(BOLDYELLOW);
+                    if(i==x&&j==y){
+                        printf(BOLDRED);
+                    }
+                    printf("ㅁ");
+                    printf(RESET);
+                    break;
+                    
+                    break;
+            }
+            printf(RESET);
+            if(j==MAX+1)printf("\n");
+        }
+    }
+    printf(RESET);
+}
+```
