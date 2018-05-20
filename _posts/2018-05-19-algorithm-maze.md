@@ -619,8 +619,9 @@ int main(int argc, const char * argv[]) {
 
                 if(pos.x==MAX&&pos.y==MAX){
                     printf("미로를 찾았습니다.\n");
+                    final_path(pos);
                     found=1;
-                    break;
+                    exit(0);
                 }
                 enQueue(q,pos);
             }
@@ -629,8 +630,11 @@ int main(int argc, const char * argv[]) {
 
     return 0;
 }
+```
 
+- movable함수
 
+```c
 int movable(Position pos, int dir){
     Position tmp = move_to(pos, dir);
     //1. dir방향으로 이동한 좌표가 1~MAX이내에 있어야한다.
@@ -659,7 +663,11 @@ int movable(Position pos, int dir){
     }
     
 }
+```
 
+- print_maze
+
+```c
 void print_maze(int x,int y){
 //    sleep(1);
 //    clear();
@@ -706,5 +714,37 @@ void print_maze(int x,int y){
         }
     }
     printf(RESET);
+}
+```
+
+- final_path
+
+마지막으로 찾은 최종 경로를 표시해주기 위한 함수입니다.
+
+```c
+void final_path(Position pos){
+    
+    Position cur = pos;
+    Position next;
+    
+    int offset[4][2] = {{-1,0},{0,1},{1,0},{0,-1}};
+    int num=maze[cur.x][cur.y]+1;
+    
+    maze[cur.x][cur.y]=FINAL;
+    
+    while(1){
+        for(int i=0;i<4;i++){
+            next.x=cur.x+offset[i][0];
+            next.y=cur.y+offset[i][1];
+            if(maze[next.x][next.y]==num){
+                maze[next.x][next.y]=FINAL;
+                cur=next;
+                num++;
+                break;
+            }
+        }
+        if(cur.x==1&&cur.y==1)break;
+    }
+    print_maze(n-2, n-2);
 }
 ```
