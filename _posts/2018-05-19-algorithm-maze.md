@@ -727,7 +727,9 @@ void final_path(Position pos){
     Position cur = pos;
     Position next;
     
-    int offset[4][2] = {{-1,0},{0,1},{1,0},{0,-1}};
+    int offset[4][2] = {
+        {-1,0},{0,1},{1,0},{0,-1}
+    };
     int num=maze[cur.x][cur.y]+1;
     
     maze[cur.x][cur.y]=FINAL;
