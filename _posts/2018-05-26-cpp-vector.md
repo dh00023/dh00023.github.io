@@ -87,8 +87,5 @@ int main(){
 
 ### 참조페이지
 
-출처 : http://hyeonstorage.tistory.com/324
+[출처](http://hyeonstorage.tistory.com/324)
 
-
-
-#### 

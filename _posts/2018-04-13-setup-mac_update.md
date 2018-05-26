@@ -1,7 +1,7 @@
 ---
 title: Mac OS Update 오류(Xcode)
 categories:
-- setting
+- error
 tag:
 - Xcode
 - git
