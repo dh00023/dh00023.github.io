@@ -267,10 +267,9 @@ int movable(Position pos,int dir);
 
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
     
     Stack * top;
-    init(&top); // 이동할 방향의 정수를 저장한다.
+    init(&top); 
 //    make_maze();
     
     Position cur; // 항상 현재 위치를 표현
