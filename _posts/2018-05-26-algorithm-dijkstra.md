@@ -36,6 +36,8 @@ tag:
 
 ## 구현
 
+### 인접행렬
+
 ```c
 #include <stdio.h>
 #include <limits.h> //INT_MAX
@@ -43,28 +45,43 @@ tag:
 typedef enum { false, true } bool;
 
 // 최단 거리를 찾는 함수
-int min_distance(int dist[], bool shortset[])
+int min_distance(int dist[], bool visited[])
 {
     // 자료형의 최대값으로 min값 설정
     int min = INT_MAX, min_index=0;
-    
+
     for (int v = 0; v < V; v++){
-        //shortset[v]가 false이면서 dist[v]가 최소값보다 적은 경우
-        if (shortset[v] == false && dist[v] <= min){
+        //visited[v]가 false이면서 dist[v]가 최소값보다 적은 경우
+        if (visited[v] == false && dist[v] <= min){
             min = dist[v];
             min_index = v;
         }
-        
+
     }
     return min_index;
 }
 
+void print_path(int parent[], int j){
+    if (parent[j] == - 1)
+        return;
+    
+    print_path(parent, parent[j]);
+    
+    printf("%d ", j);
+}
+
 // dist 배열을 출력해주는 함수
-void print_distance(int dist[], int n)
+void print_distance(int dist[], int n, int parent[])
 {
-    printf("Vertex     시작 정점으로부터 거리\n");
-    for (int i = 0; i < V; i++)
-        printf("%d \t\t\t\t %d\n", i, dist[i]);
+    int src =0;
+    printf("Vertex\t시작 정점으로부터 거리\t경로\n");
+    for (int i = 0; i < V; i++){
+        printf("\n%d -> %d \t\t %d\t\t%d ",
+               src, i, dist[i], src);
+        print_path(parent, i);
+    }
+    
+    
 }
 
 // 다익스트라 함수
@@ -73,57 +90,60 @@ void dijkstra(int graph[V][V], int src)
     // dist배열은 최단거리를 저장하는 배열이다. 즉, 결과값
     // src에서 정점 i까지 가는 거리
     int dist[V];
-    // 최단거리를 포함하고 있는지 저장할 배열이다.
-    // 최단거리를 포함하고 있다면 true(1), 아니면 false(0)
-    bool shortset[V];
-    
-    // dist배열은 자료형의 최대값, shortset배열은 false 로 초기화
+    bool visited[V]; //방문했는지 기록하는 배열
+    int parent[V]; // 부모 노드를 기억할 배열
+
+    // dist배열은 자료형의 최대값, visited배열은 false 로 초기화
+    parent[0] = -1;
     for (int i = 0; i < V; i++){
         dist[i] = INT_MAX;
-        shortset[i] = false;
+        visited[i] = false;
     }
-    
+
     // 시작점(src)에서 자기자신의 거리는 0이다.
     dist[src] = 0;
-    
+
     // 모든 정점에서 최단거리 찾기
     for (int count = 0; count < V-1; count++){
-        
-        int u = min_distance(dist, shortset); // 최소거리의 정점을 저장한다. u는 count가 0일때 src와 같다.
-    
-        shortset[u] = true; // 최단거리를 포함한다 표시
-        
+
+        int u = min_distance(dist, visited); // 최소거리의 정점을 저장한다. u는 count가 0일때 src와 같다.
+
+        visited[u] = true; //방문했음을 표시한다.
+
         // 값을 update해준다.
         for (int v = 0; v < V; v++){
-            // shortset이 false이면서, u->v로의 엣지가 있고
+            // visited이 false이면서, u->v로의 엣지가 있고
             // 엣지를 더한 값이 현재 distance보다 작은 경우
-            if (!shortset[v] && graph[u][v] && dist[u] != INT_MAX
-                && dist[u]+graph[u][v] < dist[v])
+            if (!visited[v] && graph[u][v] && dist[u] != INT_MAX
+                && dist[u]+graph[u][v] < dist[v]){
+                parent[v] = u;
                 dist[v] = dist[u] + graph[u][v];
+            }
         }
-            
-        
+
+
     }
     // 시작점으로 부터 각 정점의 최단거리 출력
-    print_distance(dist, V);
+    print_distance(dist, V,parent);
 }
 
 int main()
 {
+    
     int graph[V][V] = {
         {0, 4, 0, 0, 0, 0, 0, 8, 0},
-        {4, 0, 8, 0, 0, 0, 0, 11, 0},
+        {5, 0, 8, 0, 0, 0, 0, 11, 0},
         {0, 8, 0, 7, 0, 4, 0, 0, 2},
         {0, 0, 7, 0, 9, 14, 0, 0, 0},
         {0, 0, 0, 9, 0, 10, 0, 0, 0},
         {0, 0, 4, 14, 10, 0, 2, 0, 0},
         {0, 0, 0, 0, 0, 2, 0, 1, 6},
-        {8, 11, 0, 0, 0, 0, 1, 0, 7},
+        {0, 12, 0, 0, 0, 0, 1, 0, 7},
         {0, 0, 2, 0, 0, 0, 6, 7, 0}
     };
-    
+
     dijkstra(graph, 0);
-    
+
     return 0;
 }
 ```

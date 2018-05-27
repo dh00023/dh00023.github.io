@@ -6,7 +6,59 @@ tag:
 - c/c++
 ---
 
-스택과 큐를 이용해서 미로찾기를 구현해보았습니다.
+여러가지 탐색방법을 이용해서 미로찾기를 구현해보았습니다.
+
+## Recursion(순환)
+
+### 구현
+
+```c
+#include <stdio.h>
+#include "color.h"
+
+
+#define MAX 10
+#define PATH 0
+#define WALL 1
+#define BLOCKED 2  // 방문+경로상에 있지 않은 것
+#define VISITED 3  // 방문+경로가 될 가능성이 있는것
+
+int maze[MAX+2][MAX+2]= {
+    {4,4,4,4,4,4,4,4,4,4,4,4},
+    {4,0,0,0,0,0,0,0,0,0,1,4},
+    {4,0,1,1,0,1,1,0,1,1,1,4},
+    {4,0,0,1,0,1,0,0,0,0,1,4},
+    {4,0,1,0,1,0,1,1,1,0,0,4},
+    {4,0,0,0,1,0,1,0,0,1,0,4},
+    {4,0,1,0,1,0,0,0,1,1,0,4},
+    {4,0,1,1,1,0,1,0,0,1,1,4},
+    {4,0,1,0,0,0,1,1,1,0,1,4},
+    {4,0,0,0,1,0,0,0,1,0,1,4},
+    {4,0,1,1,1,0,1,0,0,0,0,4},
+    {4,4,4,4,4,4,4,4,4,4,4,4}
+};
+
+int find_path(int x, int y){
+    if(x<1 ||y<1||x>MAX||y>MAX)return 0;
+    else if(maze[x][y] != PATH)return 0;
+    else if(x==MAX&&y==MAX){
+        maze[x][y]=VISITED;
+        return 1;
+    }else{
+        maze[x][y] = VISITED;
+        if(find_path(x-1, y)||find_path(x, y+1)||find_path(x+1, y)||find_path(x, y-1)) return 1;
+        maze[x][y]=BLOCKED;
+        return 0;
+    }
+}
+
+int main(int argc, const char * argv[]) {
+    print_maze(1, 1);
+    find_path(1, 1);
+    print_maze(MAX, MAX);
+    return 0;
+}
+```
 
 ## Stack(DFS)
 
