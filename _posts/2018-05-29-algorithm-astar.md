@@ -12,13 +12,13 @@ tag:
 
 ### 탐색과정
 
-![](https://github.com/dh00023/dh00023.github.io/tree/master/assets/images/algo/astar1.png)  
+![]({{ "/assets/images/algo/astar1.png" | absolute_url }})  
 
 녹색 출발지점(A), 빨간색 도착지점(B), 파란색 벽일때, 검색지역(흰색)이 사각형 Grid형태로 나누어져있다. 이 탐색범위를 단순히 2차원 배열로 만들어준다.
 
 갈 수 있는길(흰색), 갈 수 없는길(파란색, 장애물)로 상태가 기록해두어 갈 수 있는 길만 탐색한다.
 
-![](https://github.com/dh00023/dh00023.github.io/tree/master/assets/images/algo/astar2.png)  
+![]({{ "/assets/images/algo/astar2.png" | absolute_url }})  
 
 - 출발노드(A)에 붙어있고 지나갈 수 있는 모든 길(벽, 범위를 벗어난 곳)을 open list에 추가한다. 추가된 노드들은 출발노드(A)를 부모 노드라 기록한다.(Backtracking)
 - 출발노드를 open list에서 빼고, 방문했다는 것을 표시하기 위해서 closed list에 추가한다.
@@ -36,13 +36,14 @@ f(n) = g(n) + h(n)
 
 보통 가로, 세로 10, 대각선은 14의 경로 가중치를 할당한다.
 
-![](https://github.com/dh00023/dh00023.github.io/tree/master/assets/images/algo/astar3.png) 
+![]({{ "/assets/images/algo/astar3.png" | absolute_url }}) 
+
 1. 출발노드 open list(우선순위 큐)에 넣는다.
 2. 출발노드 open list에서 pop(), closed list에 추가
 3. 출발노드를 기준으로 주변노드를 탐색해 F가중치와 부모노드 구함
 4. 계산된 주변 노드 open list에 push()
 
-![](https://github.com/dh00023/dh00023.github.io/tree/master/assets/images/algo/astar4.png) 
+![]({{ "/assets/images/algo/astar4.png" | absolute_url }})
 
 1. open list에서 F값이 가장 작은 노드 pop()
 
@@ -57,7 +58,7 @@ f(n) = g(n) + h(n)
 
 6. F=40 closed list push
 
-![](https://github.com/dh00023/dh00023.github.io/tree/master/assets/images/algo/astar5.png) 
+![]({{ "/assets/images/algo/astar5.png" | absolute_url }})
 
 1. open list에서 F값이 가장 작은 노드 pop() : F=54
 
@@ -72,15 +73,15 @@ f(n) = g(n) + h(n)
 
 **위와 같은 과정을 반복한다.**
 
-![](https://github.com/dh00023/dh00023.github.io/tree/master/assets/images/algo/astar6.png)
+![]({{ "/assets/images/algo/astar6.png" | absolute_url }})
 
-![](https://github.com/dh00023/dh00023.github.io/tree/master/assets/images/algo/astar7.png)  
+![]({{ "/assets/images/algo/astar7.png" | absolute_url }})
 
-![](https://github.com/dh00023/dh00023.github.io/tree/master/assets/images/algo/astar8.png)  
+![]({{ "/assets/images/algo/astar8.png" | absolute_url }})
 
-![](https://github.com/dh00023/dh00023.github.io/tree/master/assets/images/algo/astar9.png)  
+![]({{ "/assets/images/algo/astar9.png" | absolute_url }})
 
-![](https://github.com/dh00023/dh00023.github.io/tree/master/assets/images/algo/astar10.png)
+![]({{ "/assets/images/algo/astar10.png" | absolute_url }})
 
 목표노드에서 부터 부모노드를 따라서 되돌아가면 최단경로가 구해지는 것을 볼 수 있다.  
 
