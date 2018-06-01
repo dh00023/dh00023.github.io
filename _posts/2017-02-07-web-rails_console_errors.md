@@ -1,7 +1,7 @@
 ---
 title: Rails console error
 categories:
-- web
+- error
 tags:
 - ruby
 ---

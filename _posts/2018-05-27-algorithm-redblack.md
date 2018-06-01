@@ -145,7 +145,349 @@ x를 새로 삽입된 노드라고 가정할 것이다.
 
 ### 예제
 
-![Examples](https://www.geeksforgeeks.org/wp-content/uploads/Examples_new.png)
+![Examples](https://www.csee.umbc.edu/courses/undergraduate/341/spring04/hood/notes/red_black/Diagram1.jpg)
+
+
+
+## 코드
+
+```c
+#include "redblack.h"
+#define RED 1
+#define BLACK 0
+
+typedef struct node{
+    int color;
+    int key;
+    struct node * left, * right, * parent;
+}Node;
+
+Node * new_node(int key){
+    Node * new = malloc(sizeof(Node));
+    new->left = new->right = new->parent = NULL;
+    new->key=key;
+    new->color=RED;
+    return new;
+}
+
+void rotate_left(Node * node,Node ** root)
+{
+    printf("left rotation!!\n");
+    Node * r = node->right;
+    Node * p = node->parent;
+
+    if(r->left!=NULL){
+        r->left->parent = node;
+    }
+    node->right=r->left;
+    node->parent=r;
+    r->left=node;
+    r->parent=p;
+    
+
+    if(p==NULL){
+        *root = r;
+    }else if(node == p->left){
+        p->left = r;
+    }else{
+        p->right = r;
+    }
+}
+
+
+void rotate_right(Node * node,Node ** root)
+{
+    printf("right rotation!!\n");
+    Node * l = node->left;
+    Node * p = node->parent;
+
+    if(l->right!=NULL){
+        l->right->parent = node;
+    }
+    node->left=l->right;
+    node->parent=l;
+    l->right=node;
+    l->parent=p;
+    
+    if(p==NULL){
+        *root = l;
+    }else if(node == p->left){
+        p->left = l;
+    }else{
+        p->right = l;
+    }
+}
+
+Node * grand_node(Node *n){
+    if ((n != NULL) && (n->parent != NULL))
+        return n->parent->parent;
+    else
+        return NULL;
+}
+Node *uncle_node(Node *n)
+{
+    struct node *g = grand_node(n);
+    if (g == NULL)
+        return NULL; // No grandparent means no uncle
+    if (n->parent == g->left)
+        return g->right;
+    else
+        return g->left;
+}
+void insert_fix(Node ** root, Node * node){
+    
+    if(node->parent==NULL){
+        node->color=BLACK;
+        return;
+    }else{
+        if(node->parent->color==RED){
+            Node * grand = node->parent->parent;
+            Node * uncle;
+            if(grand->left==node->parent)uncle=grand->right;
+            else uncle=grand->left;
+            
+            if(uncle==NULL){
+                grand->color=RED;
+                node->parent->color=BLACK;
+                if(node->parent==grand->left){
+                    if(node==node->parent->left){
+                        rotate_right(grand, root);
+                        grand->left=NULL;
+                    }else{
+                        rotate_left(node->parent, root);
+                        rotate_right(grand, root);
+                    }
+                    
+                }else{
+                    if(node == node->parent->right){
+                        rotate_left(grand, root);
+                        grand->right=NULL;
+                    }else{
+                        rotate_right(node->parent, root);
+                        rotate_left(grand, root);
+                    }
+                    
+                }
+            }
+            else if(uncle->color==RED){
+                node->parent->color=BLACK;
+                uncle->color=BLACK;
+                
+                grand->color=RED;
+                node=grand;
+            }else{
+                if(node->parent==grand->left){
+                    if(node==node->parent->right){
+                        node=node->parent;
+                        rotate_left(node, root);
+                    }
+                    node->parent->color=BLACK;
+                    grand->color=RED;
+                    
+                    rotate_right(grand, root);
+                }else{
+                    if(node==node->parent->left){
+                        node=node->parent;
+                        rotate_right(node, root);
+                    }
+                    node->parent->color=BLACK;
+                    node->parent->parent->color=RED;
+                    
+                    rotate_left(node->parent->parent, root);
+                }
+            }
+        }
+    }
+
+    (*root)->color=BLACK;
+}
+
+void insert_node(Node ** root, int key){
+
+    Node * new = new_node(key);
+
+    Node * tmp = *root;
+    Node * p=NULL;
+
+    while(tmp!=NULL){
+        p = tmp;
+        if(key>tmp->key)tmp=tmp->right;
+        else tmp=tmp->left;
+    }
+    new->parent = p;
+    if(p==NULL)*root = new;
+    else if(key>p->key){
+        p->right = new;
+//        new->parent=p;
+    }
+    else{
+        p->left = new;
+//        new->parent=p;
+    }
+
+    insert_fix(root, new);
+
+}
+void print_tree(Node *root, int space){
+    if (root == NULL)
+        return;
+    space += 10; // level이 클수록 오른쪽에 나타나도록 space증가
+
+    print_tree(root->right, space);
+    printf("\n");
+    for(int i=10; i<space; i++)printf(" ");
+    printf("%d[%d]\n",root->key,root->color);
+    print_tree(root->left, space);
+}
+
+// 노드의 위치를 변경
+void tree_transplant(Node ** root, Node * a, Node *b){
+    if(a->parent==NULL){
+        *root = b;
+    }else if(a==a->parent->left){
+        a->parent->left = b;
+    }else{
+        a->parent->right = b;
+    }
+    b->parent = a->parent;
+}
+void delete_fixup(Node ** root, Node * n){
+    //형제노드
+    Node *sibling = NULL;
+    
+    while((n!=(*root)) && n->color==BLACK){
+        if(n!=n->parent->left){
+            sibling=n->parent->right;
+            if(sibling->color==RED){
+                sibling->color=BLACK;
+                n->parent->color = RED;
+                rotate_left(n->parent, root);
+                sibling=n->parent->right;
+            }
+            
+            if(sibling->left->color==BLACK && sibling->right->color==BLACK){
+                sibling->color=RED;
+                n=n->parent;
+            }else if(sibling->left->color==RED && sibling->right->color==BLACK){
+                sibling->color=RED;
+                sibling->left->color = BLACK;
+                rotate_right(sibling, root);
+                sibling=n->parent->right;
+            }
+            
+            if(sibling->right->color==RED){
+                sibling->color=n->parent->color;
+                sibling->right->color=BLACK;
+                n->parent->color=BLACK;
+                rotate_left(n->parent, root);
+                
+                n=*root;
+            }
+        }else{
+            sibling=n->parent->left;
+            if(sibling->color==RED){
+                sibling->color=BLACK;
+                n->parent->color = RED;
+                rotate_left(n->parent, root);
+                sibling=n->parent->left;
+            }
+            
+            if(sibling->left->color==BLACK && sibling->right->color==BLACK){
+                sibling->color=RED;
+                n=n->parent;
+            }else if(sibling->right->color==RED && sibling->left->color==BLACK){
+                sibling->color=RED;
+                sibling->right->color = BLACK;
+                rotate_left(sibling, root);
+                sibling=n->parent->left;
+            }
+            
+            if(sibling->left->color==RED){
+                sibling->color=n->parent->color;
+                sibling->left->color=BLACK;
+                n->parent->color=BLACK;
+                rotate_right(n->parent, root);
+                
+                n=*root;
+            }
+        }
+    }
+    n->color=BLACK;
+}
+void delete_node(Node ** root, int key){
+    Node * tmp = NULL;
+    Node * r = *root;
+    Node * p = NULL;
+    int color;
+    
+    while(key!=r->key){
+        if(r->key>key)r=r->left;
+        else r=r->right;
+    }
+    color = r->color;
+    
+    if(r->left ==NULL){
+        p = r->right;
+        tree_transplant(root, r, r->right);
+    }else if(r->right==NULL){
+        p = r->left;
+        tree_transplant(root, r, r->left);
+    }else{
+        tmp = r->right;
+        
+        while(tmp->left!=NULL){
+            tmp=tmp->left;
+        }
+        color = tmp->color;
+        p=tmp->right;
+        
+        tree_transplant(root, tmp,tmp->right);
+        tmp->right = r->right;
+        tmp->right->parent = tmp;
+        
+        tree_transplant(root, r,tmp);
+        tmp->left=r->left;
+        tmp->left->parent = tmp;
+        tmp->color=r->color;
+    }
+    if(color==BLACK){
+        delete_fixup(root,p);
+    }
+    free(r);
+}
+
+
+int main(){
+    Node * root = NULL;
+    insert_node(&root, 2);
+    insert_node(&root, 1);
+    insert_node(&root, 4);
+    insert_node(&root, 5);
+    insert_node(&root, 9);
+    insert_node(&root, 3);
+    insert_node(&root, 6);
+    insert_node(&root, 7);
+    print_tree(root, 0);
+}
+```
+
+```
+                              9[1]
+
+                    7[1]
+
+                              6[0]
+
+          5[1]
+
+                    4[0]
+
+                              3[1]
+
+2[0]
+
+          1[0]
+```
 
 
 
@@ -155,42 +497,116 @@ x를 새로 삽입된 노드라고 가정할 것이다.
 
 삭제할 노드를 v라 가정
 
-1. BST와 같이 노드를 삭제한다. BST에서 삭제는 자식이 1개이하일때 노드를 삭제하므로 노드가 리프노드이거나 자식이 1개인 경우만 처리하면된다. v를 삭제하고 v를 자식노드로 대체한다
+- BST와 같이 노드를 삭제한다. BST에서 삭제는 자식이 1개이하일때 노드를 삭제하므로 노드가 리프노드이거나 자식이 1개인 경우만 처리하면된다. v를 삭제하고 v를 자식노드로 대체한다
 
-   ![](https://www.geeksforgeeks.org/wp-content/uploads/rbdelete11.png)
+![](https://www.geeksforgeeks.org/wp-content/uploads/rbdelete11.png)
 
-2. 단순한 경우 : u 또는 v가 RED이면 우리는 대체한 자식노드의 색을 Black으로 바꿔준다.
+- 단순한 경우 : 형제노드가 없는 경우(u 또는 v가 RED이면 우리는 대체한 자식노드의 색을 Black으로 바꿔준다.)
 
-   ![](https://www.geeksforgeeks.org/wp-content/uploads/rbdelete12_new.png)
+```c
+ /*
+  * 선제조건: n이 최대 하나의 non-null 자식을 갖고 있음.
+  */
+void delete_one_child(node *n){
+ node *child = is_leaf(n->right) ? n->left : n->right;
 
-3. u와 v가 둘다 Black인 경우 = u는 double black이된다.
+ replace_node(n, child);
+ if (n->color == BLACK) {
+  if (child->color == RED)
+   child->color = BLACK;
+  else
+   delete_case1(child);
+ }
+ free(n);
+}
+```
 
-   1. 형제노드의 색이 Black이고, 형제 노드 중 적어도 한개의 노드가 Red이면 rotate한다.
+- 형제노드가 있는 경우
 
-      - Left Left Case
+  - Case1 : Node가 새로운 루트가 되는 경우
+  		- 새로운 루트는 검은색이므로 모든 특성이 보존되므로 통과
 
-      - Left Right Case
+    ```c
+    void delete_case1(struct node *n)
+    {
+     if (n->parent != NULL)
+      delete_case2(n);
+    }
+    ```
 
-      - Right Right Case
+  - Case2 : 형제 노드 색이 Red인 경우,  형제 노드를 Rotate한 후 부모노드와 형제노드 Recoloring한다.
 
-        ![](https://www.geeksforgeeks.org/wp-content/uploads/rbdelete13New.png)
+       1. Left Case(Right Case와 반대)
 
-      - Right Left Case
+       2. Right Case
 
-        ![](https://www.geeksforgeeks.org/wp-content/uploads/rbdelete14.png)
+          ![](https://www.geeksforgeeks.org/wp-content/uploads/rbdelete161-1024x704.png)
 
-   2. 형제 노드 색이 Black이고 형제노드의 자식노드가 모두 Black인 경우 : Recoloring 수행
+          ```c
+          void delete_case2(struct node *n)
+          {
+           struct node *s = sibling(n);
+          
+           if (s->color == RED) {
+            n->parent->color = RED;
+            s->color = BLACK;
+            if (n == n->parent->left)
+             rotate_left(n->parent);
+            else
+             rotate_right(n->parent);
+           }
+           delete_case3(n);
+          }
+          ```
 
-      ![](https://www.geeksforgeeks.org/wp-content/uploads/rbdelete15.png)
+- Case3 : 형제 노드 색이 Black이고 형제노드의 자식노드가 모두 Black인 경우 : Recoloring 수행
 
-   3. 형제 노드 색이 Red인 경우 : 형제 노드를 Rotate한 후 부모노드와 형제노드 Recoloring한다.
+![](https://www.geeksforgeeks.org/wp-content/uploads/rbdelete15.png)
 
-      1. Left Case(Right Case와 반대)
+```c
+void delete_case3(struct node *n)
+{
+ struct node *s = sibling(n);
 
-      2. Right Case
+ if ((n->parent->color == BLACK) &&
+     (s->color == BLACK) &&
+     (s->left->color == BLACK) &&
+     (s->right->color == BLACK)) {
+  s->color = RED;
+  delete_case1(n->parent);
+ } else
+  delete_case4(n);
+}
+```
+- Case4 : 형제노드와 형제노드의 자식노드는 검은색이지만, 부모노드는 빨간색인경우
 
-         ![](https://www.geeksforgeeks.org/wp-content/uploads/rbdelete161-1024x704.png)
+  ![](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Red-black_tree_delete_case_4_as_svg.svg/674px-Red-black_tree_delete_case_4_as_svg.svg.png)
 
+  - 부모노드와 형제노드의 색을 바꿔준다.
+
+  ```c
+  void delete_case4(struct node *n)
+  {
+   struct node *s = sibling(n);
+  
+   if ((n->parent->color == RED) &&
+       (s->color == BLACK) &&
+       (s->left->color == BLACK) &&
+       (s->right->color == BLACK)) {
+    s->color = RED;
+    n->parent->color = BLACK;
+   } else
+    delete_case5(n);
+  }
+  ```
+
+- Case5 : 형제노드의 색이 Black이고, 형제 노드의 자식노드 중 적어도 한개의 노드가 Red이면 rotate한다.
+	- Left Left Case
+	- Left Right Case
+	- Right Right Case
+	![](https://www.geeksforgeeks.org/wp-content/uploads/rbdelete13New.png)
+	- Right Left Case
+	![](https://www.geeksforgeeks.org/wp-content/uploads/rbdelete14.png)
 
 
 ### 시간복잡도
