@@ -804,6 +804,11 @@ void final_path(Position pos){
 ## Dijkstra
 
 ```c
+/*
+출발점으로 부터 모든노드의 최단거리
+다익스트라 인접리스트로 미로찾기 최단거리 구함!
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
@@ -831,7 +836,6 @@ int parent[100];
 int end, start;
 
 void print_maze(int x, int y);
-
 typedef struct node{
     int dest;       //목적노드
     int weight;     //가중치
@@ -989,7 +993,7 @@ void backtracking(int end){
     maze[1][1] = FINAL;
 }
 
-void print_array(int dis[],int n,int parent[]){
+void print_array(int dis[],int n){
     printf("정점\t\t시작노드로부터거리\n");
     int e = 88;
     for(int i=0;i<n;i++){
@@ -1037,7 +1041,7 @@ void dijkstra(Graph * g,int src){
             trav=trav->next;
         }
     }
-    print_array(dis, V, parent);
+    print_array(dis, V);
 }
 void print_maze(int x,int y){
     // sleep(1);
@@ -1103,31 +1107,61 @@ int main()
     
     start = m*1+1;
     end = m*8+8;
+    
     parent[start] = -1;
     for(int i=1;i<m-1;i++){
         for(int j=1;j<m-1;j++){
             s=i*m+j;
-            if(i==1 && maze[i+1][j]==PATH)add_edge(graph, s, s+m, 1);
-            if(j==1&&maze[i][j+1]==PATH)add_edge(graph, s, s+1, 1);
-                
-            if(i==m-2&&maze[i-1][j]==PATH)add_edge(graph, s,s-m,1);
-            if(j==m-2&&maze[i][j-1]==0)add_edge(graph, s, s-1, 1);
-            if(i!=1&&j!=1&&j!=m-2&&i!=m-2){
-                if(maze[i+1][j]==PATH)add_edge(graph, s, s+m, 1);
-                if(maze[i-1][j]==PATH)add_edge(graph, s, s-m, 1);
-                if(maze[i][j+1]==PATH)add_edge(graph, s, s+1, 1);
-                if(maze[i][j-1]==PATH)add_edge(graph, s, s-1, 1);
-                
+            if(maze[i][j]==PATH){
+                if(i==1){
+                    if(maze[i+1][j]==PATH)add_edge(graph, s, s+m, 1);
+                    if(j==1){
+                        if(maze[i][j+1]==PATH)add_edge(graph, s, s+1, 1);
+                    }else if(j==m-1){
+                        if(maze[i][j+1]==PATH)add_edge(graph, s, s-1, 1);
+                    }else{
+                        if(maze[i][j+1]==PATH)add_edge(graph, s, s-1, 1);
+                        if(maze[i][j+1]==PATH)add_edge(graph, s, s+1, 1);
+                    }
+                }else if(i==m-2){
+                    if(maze[i-1][j]==PATH)add_edge(graph, s, s-m, 1);
+                    if(j==1){
+                        if(maze[i][j+1]==PATH)add_edge(graph, s, s+1, 1);
+                    }else if(j==m-1){
+                        if(maze[i][j+1]==PATH)add_edge(graph, s, s-1, 1);
+                    }else{
+                        if(maze[i][j+1]==PATH)add_edge(graph, s, s-1, 1);
+                        if(maze[i][j+1]==PATH)add_edge(graph, s, s+1, 1);
+                    }
+                }else if(j==1){
+                    if(maze[i][j+1]==PATH)add_edge(graph, s, s+1, 1);
+                    if(i!=1&&i!=m-2){
+                        if(maze[i+1][j]==PATH)add_edge(graph, s, s+m, 1);
+                        if(maze[i-1][j]==PATH)add_edge(graph, s, s-m, 1);
+                    }
+                }else if(j==m-2){
+                    if(maze[i][j-1]==PATH)add_edge(graph, s, s-1, 1);
+                    if(i!=1&&i!=m-2){
+                        if(maze[i+1][j]==PATH)add_edge(graph, s, s+m, 1);
+                        if(maze[i-1][j]==PATH)add_edge(graph, s, s-m, 1);
+                    }
+                }else{
+                    if(maze[i+1][j]==PATH)add_edge(graph, s, s+m, 1);
+                    if(maze[i-1][j]==PATH)add_edge(graph, s, s-m, 1);
+                    if(maze[i][j+1]==PATH)add_edge(graph, s, s+1, 1);
+                    if(maze[i][j-1]==PATH)add_edge(graph, s, s-1, 1);
+                }
             }
+            
         }
     }
-    dijkstra(graph, start);
+    print_maze(start/m, start%m);
+    dijkstra(graph, 11);
     backtracking(end);
     print_maze(end/m, end%m);
     
     return 0;
 }
-
 ```
 
 ## A*
