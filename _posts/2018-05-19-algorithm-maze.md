@@ -871,13 +871,12 @@ void enQueue(Queue * q,Vertex v){
     
     //우선순위큐
     // with insertion-sort, begin sorting process.
-    while( tq!= NULL)
-    {
+    while( tq!= NULL){
         key = weight[v.x][v.y];
         
         if( key < weight[tq->ver.x][tq->ver.y]){
-            tmp = q->rear->ver;
-            q->rear->ver = v;
+            tmp = tq->ver;
+            tq->ver = v;
             v  = tmp;
         }
         tq = tq->next;
@@ -886,6 +885,7 @@ void enQueue(Queue * q,Vertex v){
     q->rear->next= new;
     q->rear=new;
 }
+
 
 void deQueue(Queue * q){
     if(q->front==NULL){
@@ -984,15 +984,16 @@ void astar(Vertex s,Vertex e){
     
     while(!is_empty(q)){
         
+        
         // 현재 점을 Closed list에 추가 >> maze에 바로표시
         maze[v.x][v.y]=CLOSED;
-        print_maze(v.x,v.y);
-        
         v = front(q);
         deQueue(q);
+        if(v.x==end.x && v.y==end.y)return;
         
         // 새로운 인접노드를 추가해준다.
-        add_openlist(q, v);   
+        add_openlist(q, v);
+        
     }   
 }
 ```
