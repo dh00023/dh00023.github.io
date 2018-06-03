@@ -1004,6 +1004,11 @@ void astar(Vertex s,Vertex e){
 void backtracking(){
     int i, j, back;
     
+    if(parent[end.x][end.y]==0){
+        printf("경로가 없습니다.\n");
+        return;
+    }
+        
     i  = parent[end.x][end.y] / 10;
     j  = parent[end.x][end.y] % 10;
     
