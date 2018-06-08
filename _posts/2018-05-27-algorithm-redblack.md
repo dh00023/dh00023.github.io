@@ -228,7 +228,7 @@ Node *uncle_node(Node *n)
 {
     struct node *g = grand_node(n);
     if (g == NULL)
-        return NULL; // No grandparent means no uncle
+        return NULL; 
     if (n->parent == g->left)
         return g->right;
     else
@@ -318,11 +318,9 @@ void insert_node(Node ** root, int key){
     if(p==NULL)*root = new;
     else if(key>p->key){
         p->right = new;
-//        new->parent=p;
     }
     else{
         p->left = new;
-//        new->parent=p;
     }
 
     insert_fix(root, new);

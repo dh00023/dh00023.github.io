@@ -127,7 +127,7 @@ void add_openlist(Queue * q,Vertex v){
             if(w<weight[i][j]||weight[i][j]==0){
                 weight[i][j]=w;
                 // 부모 노드의 정보를 저장한다.
-                parent[i][j] = (v.x*MAX)+v.y;
+                parent[i][j] = (v.x*MAX+2)+v.y;
                 
                 // 출구를 찾으면 종료
                 if(end.x == i && end.y ==j)return;
@@ -181,8 +181,8 @@ void astar(Vertex s,Vertex e){
 void backtracking(){
     int i, j, back;
     
-    i  = parent[end.x][end.y] / 10;
-    j  = parent[end.x][end.y] % 10;
+    i  = parent[end.x][end.y] / MAX+2;
+    j  = parent[end.x][end.y] % MAX+2;
     
     while( parent[i][j] != -1)
     {
@@ -190,8 +190,8 @@ void backtracking(){
         
         maze[i][j] = FINAL;
         
-        i  = back / 10;
-        j  = back % 10;
+        i  = back / MAX+2;
+        j  = back % MAX+2;
     }
     map[start.x][start.y] = FINAL;
 }
