@@ -1,5 +1,5 @@
 ---
-title: vector
+title: STL vector
 categories:
 - STL
 tag:
