@@ -3,8 +3,8 @@ title: Django와 Vue.js 연동하기
 categories:
 - web
 tag:
-- Vue.js
-- Django
+- vue
+- django
 ---
 
 ## Build Django Project 
