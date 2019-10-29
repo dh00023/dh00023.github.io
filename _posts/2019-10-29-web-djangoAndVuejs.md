@@ -256,7 +256,7 @@ class HomeView(TemplateView):
 #### public/index.html
 
 ```html
-{% load render_bundle from webpack_loader %}
+{% raw %}{% load render_bundle from webpack_loader %}{% endraw %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -271,11 +271,13 @@ class HomeView(TemplateView):
       <strong>We're sorry but django-vue doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
-    {% render_bundle 'index' %}
+    {% raw %}{% render_bundle 'index' %}{% endraw %}
     <!-- built files will be auto injected -->
   </body>
 </html>
 ```
+
+`index.html` 에 `{% raw %}{% load render_bundle from webpack_loader %}{% endraw %}`와 `{% raw %}{% render_bundle 'index' %}{% endraw %}`를 추가해준다.
 
 ### webpack-bundle-tracker([owais/webpack-bundle-tracker](https://github.com/owais/webpack-bundle-tracker))
 
