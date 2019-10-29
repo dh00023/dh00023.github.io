@@ -277,8 +277,6 @@ class HomeView(TemplateView):
 </html>
 ```
 
-`{% load render_bundle from webpack_loader %}` 와 `{% render_bundle 'index' %}`를 `index.html` 에 추가해준다.
-
 ### webpack-bundle-tracker([owais/webpack-bundle-tracker](https://github.com/owais/webpack-bundle-tracker))
 
 Vue.js에서는 `webpack-bundle-tracker`에 관련된 설정을 해줘야한다.
