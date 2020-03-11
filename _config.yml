@@ -216,10 +216,9 @@ font:
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
 social:
   GitHub: https://github.com/dh00023
-  Web: https://dh00023.gitbooks.io/til/content/
-  JAVA: https://dh00023.gitbooks.io/java/
-  JSP: https://dh00023.gitbooks.io/jsp/
-
+  GitBook: https://dahye-jeong.gitbook.io/til/
+  LinkedIn: https://www.linkedin.com/in/dahye-jeong-a87353104
+  
 
 # Social Links Icons
 # Icon Mapping:
@@ -231,9 +230,8 @@ social_icons:
   # Icon Mappings.
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
   GitHub: github
-  Web: book
-  JAVA: book
-  JSP: book
+  GitBook: book
+  LinkedIn: linkdin
   #Twitter: twitter
   #Weibo: weibo
 

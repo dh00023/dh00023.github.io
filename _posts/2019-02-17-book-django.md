@@ -1,6 +1,6 @@
 ---
 title: Django📚
-link: https://dh00023.gitbooks.io/django/content/
+link: https://dahye-jeong.gitbook.io/django/
 categories:
 - book
 ---
