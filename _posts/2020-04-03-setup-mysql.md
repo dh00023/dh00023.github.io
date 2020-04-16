@@ -1,9 +1,7 @@
 ---
+layout: post
 title: mac에서 mysql 비밀번호 초기화하기
-categories:
-- setting
-tag:
-- mysql
+tags: [mysql, mac]
 ---
 
 ```sh
