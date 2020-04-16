@@ -1,10 +1,7 @@
 ---
+layout: post
 title: MongoDB
-categories:
-- setting
-tag:
-- DB
-- install
+tags: [setting, NoSQL, MongoDB, homebrew]
 ---
 
 ```

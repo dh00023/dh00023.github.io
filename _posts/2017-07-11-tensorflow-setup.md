@@ -1,11 +1,7 @@
 ---
+layout: post
 title: Tesorflow 설치하기
-categories:
-- setting
-tag:
-- tensorflow
-- python
-- mac
+tags: [setting, python, tensorflow, mac, pip]
 ---
 
 Mac에 Tensorflow 설치하는 방법입니다.

@@ -1,10 +1,7 @@
 ---
+layout: post
 title: Tensor
-categories:
-- deeplearning
-tag:
-- python
-- pytorch
+tags: [pytorch, python]
 ---
 
 - [Pytorch tutorial](http://pytorch.org/tutorials/beginner/blitz/tensor_tutorial.html#tensors)

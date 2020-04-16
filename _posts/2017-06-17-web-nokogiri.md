@@ -1,11 +1,7 @@
 ---
+layout: post
 title: nokogiri
-categories:
-- web
-tag:
-- parsing
-- gem
-- ruby
+tags: [ruby-on-rails, gem, nokogiri, parising]
 ---
 
 #### 참고페이지

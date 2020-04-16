@@ -1,12 +1,7 @@
 ---
+layout: post
 title: Devise confirmable + Mailgun
-categories:
-- web
-tag:
-- devise
-- mailgun
-- ruby
-- gem
+tags: [ruby-on-rails, gem, mailgun]
 ---
 
 Devise confirmable기능과 Mailgun을 이용해서 회원가입 인증을 구현해 볼 것이다.

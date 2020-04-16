@@ -1,10 +1,7 @@
 ---
+layout: post
 title: Mac OS Update 오류(Xcode)
-categories:
-- error
-tag:
-- Xcode
-- git
+tags: [error, mac]
 ---
 
 Mac OS를 update이후에 git을 사용시 Xcode CommandLineTools 오류가 발생했다.

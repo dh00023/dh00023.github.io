@@ -1,10 +1,7 @@
 ---
+layout: post
 title: Autograd
-categories:
-- deeplearning
-tag:
-- python
-- pytorch
+tags: [pytorch, python]
 ---
 
 ### Autograd: automatic differentiation

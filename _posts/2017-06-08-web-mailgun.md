@@ -1,11 +1,7 @@
 ---
+layout: post
 title: Gem mailgun-ruby
-categories:
-- web
-tag:
-- ruby
-- gem
-- mailgun
+tags: [ruby-on-rails, gem, mailgun]
 ---
 
 #### Mailgun 메일 보내기

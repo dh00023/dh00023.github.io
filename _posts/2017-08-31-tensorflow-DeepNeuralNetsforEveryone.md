@@ -1,10 +1,7 @@
 ---
+layout: post
 title: Deep Neural Nets for Everyone
-categories:
-- deeplearning
-tag:
-- python
-- tensorflow
+tags: [tensorflow, python]
 ---
 
 <a href="https://hunkim.github.io/ml/">모두를 위한 머신러닝/딥러닝 강의</a>를 참조했습니다.

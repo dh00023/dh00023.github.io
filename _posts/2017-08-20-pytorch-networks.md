@@ -1,10 +1,7 @@
 ---
+layout: post
 title: Neural Networks
-categories:
-- deeplearning
-tag:
-- python
-- pytorch
+tags: [pytorch, python]
 ---
 
 신경망(Neural networks)은 `torch.nn` 패키지를 사용해 만들 수 있다.

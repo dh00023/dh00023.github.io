@@ -1,10 +1,7 @@
 ---
+layout: post
 title: Mac에 Rails 설치하기
-categories:
-- setting
-tag:
-- ruby
-- rails
+tags: [ruby-on-rails, mac, homebrew]
 ---
 
 ## Homebrew 설치하기 [[페이지 바로가기](https://brew.sh/index_ko.html)]
@@ -82,7 +79,7 @@ $ rbenv local 2.4.0
 ```
 
 
-## rvm 설치 [[페이지 바로가기]버https://rvm.io/)]
+## rvm 설치 [[페이지 바로가기](https://rvm.io/)]
 
 ```
 $ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB

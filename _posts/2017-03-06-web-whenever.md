@@ -1,11 +1,7 @@
 ---
+layout: post
 title: Whenever Gem
-categories:
-- web
-tag: 
-- ruby
-- gem
-- db
+tags: [ruby-on-rails, gem]
 ---
 
 `$gem whenever` 을 이용해서 DB의 records를 자동으로 삭제되게 설정할 것이다.

@@ -1,11 +1,7 @@
 ---
+layout: post
 title: Heroku 배포하기
-categories:
-- web
-tag:
-- deploy
-- ruby
-- heroku
+tags: [ruby-on-rails, heroku, deploy]
 ---
 
 ### 참조페이지

@@ -1,10 +1,7 @@
 ---
+layout: post
 title: TinyMCE 적용하기
-categories:
-- web
-tag: 
-- WYSIWYG
-- gem
+tags: [ruby-on-rails, wysiwyg, gem]
 ---
 
 TinyMCE는 WYSIWYG로 글을 보이는데로 수정할 수 있게 해주는 것이다.

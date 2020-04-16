@@ -1,12 +1,7 @@
 ---
+layout: post
 title: OmniAuth Facebook Gem
-categories:
-- web
-tag:
-- gem
-- facebook
-- omniauth
-- ruby
+tags: [ruby-on-rails, gem, omniauth]
 ---
 
 ```

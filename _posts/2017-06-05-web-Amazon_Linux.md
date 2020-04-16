@@ -1,13 +1,7 @@
 ---
+layout: post
 title: AWS EC2 Amazon Linux deploy하기
-categories:
-- setting
-tag:
-- aws
-- ec2
-- linux
-- deploy
-- ruby
+tags: [ruby-on-rails, depoly, aws, ec2, linux]
 ---
 
 ### AWS instance 생성

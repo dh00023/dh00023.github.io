@@ -1,11 +1,7 @@
 ---
+layout: post
 title: Chartkick
-categories:
-- web
-tag:
-- JS
-- gem
-- ruby
+tags: [ruby-on-rails, gem, js]
 ---
 
 - [Github page](https://github.com/ankane/chartkick)

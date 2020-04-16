@@ -1,10 +1,7 @@
 ---
+layout: post
 title: Django와 Vue.js 연동하기
-categories:
-- web
-tag:
-- vue
-- django
+tags: [vue-js, django]
 ---
 
 ## Build Django Project 
@@ -92,7 +89,7 @@ Quit the server with CONTROL-C.
 [29/Oct/2019 06:17:42] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 304 0
 [29/Oct/2019 06:17:42] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 304 0
 ```
-![]({{ site.url }}/assets/images/django_start_page.png)
+![](/images/posts/django_start_page.png)
 
 ## Build Vue.js Project
 
@@ -153,7 +150,7 @@ $ npm run serve
 ```
 vue 프로젝트 서버를 실행한후 `http://localhost:8080`에 들어가면 다음과 같이 정상적으로 설정한 것을 확인할 수 있다.
 
-![]({{ site.url }}/assets/images/vue-start-page.png)
+![](/images/posts/vue-start-page.png)
 
 ## Connecting Vue.js and Django: Webpack
 
@@ -325,7 +322,7 @@ $ ./manage.py runserver
 ```
 Django 프로젝트와 Vue 프로젝트를 각각 서버를 실행한 후 `http://localhost:8000`(장고서버) 에 접속하면 Vue프로젝트 실행 첫화면이 뜨는 것을 확인할 수 있다.
 
-![]({{ site.url }}/assets/images/vue-start-page.png)
+![](images/posts/vue-start-page.png)
 
 ## 참조
 

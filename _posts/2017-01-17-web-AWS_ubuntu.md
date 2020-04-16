@@ -1,12 +1,8 @@
 ---
+layout: post
 title: AWS EC2 Ubuntu deploy하기
-categories:
-- web
-tags:
-- aws
-- ec2
-- deploy
-- ruby
+tags: [ruby, aws, deploy]
+image: '/images/posts/8.jpg'
 ---
 
 이 글은 AWS EC2에 rails 서비스를 deploy하는 방법이다.

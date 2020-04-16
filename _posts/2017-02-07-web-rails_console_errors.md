@@ -1,9 +1,7 @@
 ---
+layout: post
 title: Rails console error
-categories:
-- error
-tags:
-- ruby
+tags: [ruby-on-rails, error]
 ---
 
 이 글은 rails console창에서 오류가 발생한 경우 해결하는 방법이다.

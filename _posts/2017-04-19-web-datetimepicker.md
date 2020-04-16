@@ -1,12 +1,7 @@
 ---
+layout: post
 title: Datetime picker 사용하기
-categories:
-- web
-tag: 
-- datetime
-- ruby
-- js
-- gem
+tags: [ruby-on-rails, gem, javascript]
 ---
 
 ### 한국 시간대로 설정하기
